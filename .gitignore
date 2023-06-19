@@ -1,0 +1,8 @@
+*.log
+*.zip
+.vs/
+Gemfile.lock
+*.swp
+*~
+_site/
+.jekyll-cache/
