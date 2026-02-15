@@ -39,8 +39,6 @@ gem "logger"
 - Common non-blocking warnings you may see:
   - Sass deprecation warnings from dependencies (`@import` usage, color functions) — these are from upstream themes (`minima`) and don't break local builds, but consider migrating if you update Sass in the future.
 
-If you want, I can add a short troubleshooting checklist to the README or CI to automatically detect and warn about missing system packages.
-
 ## CI & deploy behaviour ⚙️
 - `.gitlab-ci.yml` sets `JEKYLL_ENV=production` in CI.
 - Non-default branches run a `test` build (artifact: `test/`). Default branch builds `public/` and is published to Pages.
@@ -70,8 +68,5 @@ If you want, I can add a short troubleshooting checklist to the README or CI to 
 
 ## Where to look for more context 🔎
 - `._config.yml` and `Gemfile` for build/runtime configuration
-- `.gitlab-ci.yml` for the exact CI commands and artifact destinations
 - `index.html` and `styles.css` for site structure and styling patterns
 
----
-If anything is unclear or you want this file to cover additional workflows (e.g., adding a page template, automated image optimization, or CI previews), tell me which area to expand and I’ll iterate.

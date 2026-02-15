@@ -1,16 +1,27 @@
 :root {
-    --bg-overlay: rgba(0, 0, 0, 0.75);
-    --accent: #b9b9b9;
+    /* Gruvbox Dark palette (modified for site) */
+    --bg: #282828;
+    --bg-overlay: rgba(40, 40, 40, 0.88);
+    --panel-gradient-start: rgba(40,40,40,0.90);
+    --panel-gradient-end: rgba(32,30,28,0.95);
+    --fg: #ebdbb2;
+    --muted: #a89984;
+    --accent: #fabd2f; /* yellow */
+    --accent-2: #fe8019; /* orange */
+    /* Link colors tuned for gruvbox */
+    --link: #83a598; /* blue */
+    --link-visited: #d3869b; /* violet (visited) */
+    --shadow: rgba(0, 0, 0, 0.5);
     --max-width: 900px;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background: url(assets/background.png) no-repeat center/cover fixed;
-    background-color: #0b0b0b;
-    font-family: Arial, sans-serif; /* Use a web-safe font for wider compatibility */
-    color: #fff;
+    background: url(assets/background.jpg) no-repeat center/cover fixed;
+    background-color: var(--bg);
+    font-family: "JetBrains Mono Nerd Font", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Prefer JetBrains Mono Nerd Font */
+    color: var(--fg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -35,7 +46,7 @@ body {
     flex-direction: column; /* Stack by default for narrow screens */
     gap: 1rem;
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
+    background: linear-gradient(180deg, var(--panel-gradient-start), var(--panel-gradient-end));
 }
 
 .image-box {
@@ -54,7 +65,7 @@ body {
 
 .text-box {
     padding: 0.75rem 1rem;
-    color: #fff;
+    color: var(--fg);
     text-align: center; /* centered on small screens */
     background: var(--bg-overlay);
     border-radius: 8px;
@@ -70,7 +81,7 @@ body {
     gap: 1rem;
     background: var(--bg-overlay);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+    box-shadow: 0 4px 12px var(--shadow);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     margin-top: 0;
@@ -87,6 +98,27 @@ body {
     display: block;
     margin: 0 auto;
     object-fit: cover;
+}
+
+/* Caption under the profile image */
+.image-caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    margin-top: 0.5rem;
+}
+.image-caption .caption-arrow {
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--fg);
+    transform: translateY(-2px);
+}
+.image-caption .caption-text {
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 0.4px;
 }
 
 .box h1 {
@@ -122,7 +154,7 @@ ul {
 }
 
 .box li a {
-    color: white;
+    color: var(--link);
     text-decoration: none;
     font-size: 1.2rem;
     transition: transform 180ms ease, color 180ms ease;
@@ -131,10 +163,30 @@ ul {
     justify-content: center;
 }
 
+/* Visited links use a gruvbox-appropriate violet */
+.box li a:visited {
+    color: var(--link-visited);
+}
+
 .box li a:hover,
 .box li a:focus {
     color: var(--accent);
     transform: translateY(-3px);
+    outline: none;
+}
+
+/* Apply link colors to all anchors (including inline text links) */
+a, a:link {
+    color: var(--link);
+    transition: color 180ms ease;
+}
+
+a:visited {
+    color: var(--link-visited);
+}
+
+a:hover, a:focus {
+    color: var(--accent);
     outline: none;
 }
 
