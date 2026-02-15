@@ -7,3 +7,7 @@ Gemfile.lock
 _site/
 .jekyll-cache/
 copilot*
+.bundle/
+vendor/
+.vscode/
+.DS_Store
