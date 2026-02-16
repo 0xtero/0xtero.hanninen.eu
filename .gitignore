@@ -6,8 +6,9 @@ Gemfile.lock
 *~
 _site/
 .jekyll-cache/
-copilot*
+.github/*
 .bundle/
-vendor/
 .vscode/
 .DS_Store
+test/
+vendor/
