@@ -1,0 +1,42 @@
+{
+  "name": "0xtero.hanninen.eu",
+  "image": "mcr.microsoft.com/devcontainers/ruby:1-3.4-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "bundle install && bundle exec jekyll build",
+  "forwardPorts": [4000],
+  "portsAttributes": {
+    "4000": {
+      "label": "Jekyll",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+          {
+            "label": "jekyll: build",
+            "type": "shell",
+            "command": "./bin/test",
+            "group": {
+              "kind": "test",
+              "isDefault": true
+            },
+            "problemMatcher": []
+          },
+          {
+            "label": "jekyll: serve",
+            "type": "shell",
+            "command": "./bin/serve",
+            "isBackground": true,
+            "problemMatcher": []
+          }
+        ]
+      }
+    }
+  },
+  "remoteUser": "vscode"
+}

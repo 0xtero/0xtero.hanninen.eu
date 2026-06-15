@@ -7,8 +7,12 @@ Gemfile.lock
 _site/
 .jekyll-cache/
 .github/*
-.bundle/
+.bundle/*
+!.bundle/config
 .vscode/
 .DS_Store
 test/
 vendor/
+.cursor/rules/*
+.cursor/*
+

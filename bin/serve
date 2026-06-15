@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+if ss -tln 2>/dev/null | grep -q ':4000 '; then
+  echo "Port 4000 is already in use. Stop the existing Jekyll server first:"
+  echo "  pkill -f 'jekyll serve'"
+  exit 1
+fi
+
+bundle exec jekyll serve --host 0.0.0.0 --livereload

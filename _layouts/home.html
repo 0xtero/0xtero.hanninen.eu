@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<div class="box">
+    <div class="image-column">
+        <div class="image-box-top">
+            <img src="{{ '/assets/tero_profile.jpg' | relative_url }}" alt="Tero's Profile Picture" class="box-image">
+            <div class="image-caption" aria-hidden="true">
+                <div class="caption-arrow">↑</div>
+                <div class="caption-text">that's me!</div>
+            </div>
+        </div>
+        <p> </p>
+        <div class="image-box-bottom">
+            <div class="image-caption" aria-hidden="true">
+                <div class="caption-text">that's my dog Archie!</div>
+                <div class="caption-arrow">↓</div>
+            </div>
+            <img src="{{ '/assets/archie.jpg' | relative_url }}" alt="Archie's Profile Picture" class="box-image">
+            <div class="image-caption blog-caption">
+                <div class="caption-arrow">↓</div>
+                <p class="caption-text">and here's a link to my blog page</p><a href="{{ '/blog/' | relative_url }}" class="caption-text caption-link">[Link]</a>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="text-box">
+            {{ content }}
+        </div>
+        {% include contact-links.html %}
+    </div>
+</div>
