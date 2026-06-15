@@ -4,7 +4,7 @@ description: >-
   Cybersecurity specialist. Tech Lead for Application Security and AI at Orange Cyberdefense.
 url: "https://0xtero.hanninen.eu"
 baseurl: ""
-permalink: /blog/:title/
+permalink: /blog/:year/:month/:day/:title/
 paginate: 5
 paginate_path: "/blog/page:num/"
 
