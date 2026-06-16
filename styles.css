@@ -266,6 +266,136 @@ a:hover, a:focus {
     }
 }
 
+/* Blog layout with sidebar */
+.blog-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: calc(var(--max-width) + 260px);
+}
+
+.blog-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.blog-sidebar {
+    flex: 0 0 220px;
+    padding: 1rem;
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--panel-gradient-start), var(--panel-gradient-end));
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+    font-size: 0.82rem;
+    line-height: 1.4;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+.blog-sidebar-heading {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.sidebar-year,
+.sidebar-month {
+    margin: 0 0 0.35rem 0;
+}
+
+.sidebar-year-label,
+.sidebar-month-label {
+    cursor: pointer;
+    color: var(--fg);
+    font-weight: 600;
+    list-style: none;
+}
+
+.sidebar-month {
+    margin-left: 0.5rem;
+}
+
+.sidebar-month-label {
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.sidebar-year > summary,
+.sidebar-month > summary {
+    padding: 0.2rem 0;
+}
+
+.sidebar-year > summary::-webkit-details-marker,
+.sidebar-month > summary::-webkit-details-marker {
+    color: var(--accent);
+}
+
+.sidebar-posts {
+    margin: 0.25rem 0 0.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-post {
+    display: block;
+    margin: 0;
+}
+
+.sidebar-post-link {
+    display: block;
+    padding: 0.35rem 0 0.35rem 0.75rem;
+    border-left: 2px solid transparent;
+    text-decoration: none;
+    color: var(--fg);
+    transition: border-color 180ms ease, color 180ms ease;
+}
+
+.sidebar-post-link:hover,
+.sidebar-post-link:focus {
+    color: var(--accent);
+    border-left-color: rgba(250, 189, 47, 0.45);
+    outline: none;
+}
+
+.sidebar-post-link.is-current {
+    border-left-color: var(--accent);
+    color: var(--accent);
+}
+
+.sidebar-post-date {
+    display: block;
+    color: var(--muted);
+    font-size: 0.75rem;
+    margin-bottom: 0.1rem;
+}
+
+.sidebar-post-title {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .blog-layout {
+        flex-direction: column;
+        max-width: var(--max-width);
+    }
+
+    .blog-sidebar {
+        flex: none;
+        width: 100%;
+        position: static;
+        max-height: none;
+        box-sizing: border-box;
+    }
+}
+
 /* Blog page */
 .blog-page-title {
     font-size: 1.6rem;

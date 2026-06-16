@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+<div class="blog-layout">
+    {% include blog-sidebar.html %}
+    <div class="blog-main">
 <div class="box post-box">
     <article class="post">
         <p class="back-link"><a href="{{ '/blog/' | relative_url }}">← Blog</a></p>
@@ -16,3 +19,5 @@ layout: default
     </article>
 </div>
 {% include contact-links.html %}
+    </div>
+</div>

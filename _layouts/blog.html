@@ -1,9 +1,12 @@
 ---
 layout: default
 ---
+<div class="blog-layout">
+    {% include blog-sidebar.html %}
+    <div class="blog-main">
 <div class="box post-box">
     <p class="back-link"><a href="{{ '/' | relative_url }}">← Home</a></p>
-    <h1 class="blog-page-title" id="top">Blog: Rare texts, musing and free range ranting</h1>
+    <h1 class="blog-page-title" id="top">A Blog: Rare texts, musing and free range ranting</h1>
     {% if paginator.posts.size > 0 %}
     <div class="blog-posts">
         {% for post in paginator.posts %}
@@ -43,4 +46,6 @@ layout: default
     <p class="post-list-empty">No posts yet.</p>
     {% endif %}
     {% include contact-links.html %}
+</div>
+    </div>
 </div>
