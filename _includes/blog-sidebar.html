@@ -1,7 +1,10 @@
 {% if site.posts.size > 0 %}
 {% assign posts_by_year = site.posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
 <nav class="blog-sidebar" aria-label="Blog archive">
-    <p class="blog-sidebar-heading">Posts</p>
+    <div class="blog-sidebar-heading-row">
+        <p class="blog-sidebar-heading">Posts</p>
+        {% include blog-feed-link.html %}
+    </div>
     {% for year_group in posts_by_year %}
     <details class="sidebar-year" open>
         <summary class="sidebar-year-label">{{ year_group.name }}</summary>

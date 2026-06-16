@@ -40,10 +40,15 @@ layout: default
     {% endif %}
     <nav class="blog-nav-actions" aria-label="Blog shortcuts">
         <a class="pagination-link" href="{{ '/' | relative_url }}">Home</a>
+        {% include blog-feed-link.html %}
         <a class="pagination-link" href="#top">Back to top</a>
     </nav>
     {% else %}
     <p class="post-list-empty">No posts yet.</p>
+    <nav class="blog-nav-actions" aria-label="Blog shortcuts">
+        <a class="pagination-link" href="{{ '/' | relative_url }}">Home</a>
+        {% include blog-feed-link.html %}
+    </nav>
     {% endif %}
     {% include contact-links.html %}
 </div>

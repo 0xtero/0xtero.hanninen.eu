@@ -299,11 +299,41 @@ a:hover, a:focus {
 }
 
 .blog-sidebar-heading {
-    margin: 0 0 0.75rem 0;
+    margin: 0;
     font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
+}
+
+.blog-sidebar-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.blog-feed-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: normal;
+    white-space: nowrap;
+    color: var(--link);
+}
+
+.blog-feed-link:hover,
+.blog-feed-link:focus {
+    color: var(--accent);
+    outline: none;
+}
+
+.back-link .blog-feed-link {
+    font-size: 0.9rem;
 }
 
 .sidebar-year,
