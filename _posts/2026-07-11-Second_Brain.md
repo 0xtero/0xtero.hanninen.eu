@@ -10,9 +10,9 @@ I have a bookmark folder called "New Stuff". I put new links in there every now 
 
 There is, as far as I can find, no peer-reviewed study showing that second-brain systems improve learning, output, or anything else. The entire evidence base is testimonials, largely from people whose job is selling the method.
 
-But there is some evidence pointing the other way. ["Google effect"](https://www.science.org/doi/10.1126/science.1207745) would indicate that in controlled experiments, people who believed a computer would store what they typed remembered significantly fewer facts than people who believed it would be erased. Your brain, perhaps quite rationally, doesn't bother to keep what it believes is filed somewhere else. So a second brain maybe isn't a idea backup storage. It's basically an instruction to your first brain to zone out and take a break.
+But there is some evidence pointing the other way. ["Google effect"](https://www.science.org/doi/10.1126/science.1207745) would indicate that in controlled experiments, people who believed a computer would store what they typed remembered significantly fewer facts than people who believed it would be erased. Your brain, perhaps quite rationally, doesn't bother to keep what it believes is filed somewhere else. So a second brain maybe isn't a "idea backup storage". It's basically an instruction to your first brain to zone out and take a break.
 
-Saving a thing feels like learning the thing. I always feel "important" when I drag a new link into my "New Stuff" folder. But I think I learn anything from it. It's just a dopamine hit from doing something you believe is useful.
+Saving a thing feels like learning the thing. I always feel "important" when I drag a new link into my "New Stuff" folder. But I don't think I learn anything from it. It's just a dopamine hit from doing something you believe is useful.
 
 I'm sure there are many good use-cases for these systems if you're an author or academic researcher but I've personally never really found any use for them. And I've been trying for years.
 
