@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-deploy:
-    if: ${{ forge.ref == 'refs/heads/main' }}
+    if: ${{ forgejo.ref == 'refs/heads/main' }}
     # Hosted Codeberg runners: https://codeberg.org/actions/meta
     # medium = 10m / 8G — enough headroom for first-time gem install + Jekyll.
     runs-on: codeberg-medium
@@ -26,9 +26,14 @@ jobs:
       - name: Build site
         run: bundle exec jekyll build
 
+      # git-pages/action runs in Docker; act copies the workspace into that
+      # container. vendor/bundle from bundler-cache is nested too deep for docker cp.
+      - name: Remove vendor before deploy
+        run: rm -rf vendor
+
       - name: Deploy to Codeberg Pages
         uses: https://codeberg.org/git-pages/action@v2
         with:
-          site: https://${{ forge.repository_owner }}.codeberg.page/${{ forge.repository }}/
-          token: ${{ forge.token }}
+          site: https://${{ forgejo.repository_owner }}.codeberg.page/${{ forgejo.repository }}/
+          token: ${{ forgejo.token }}
           source: _site/
