@@ -11,13 +11,3 @@ paginate_path: "/blog/page:num/"
 plugins:
   - jekyll-feed
   - jekyll-paginate
-
-# Keep CI/helper paths out of the published site (vendor is already default-excluded).
-exclude:
-  - bin
-  - vendor
-  - .forgejo
-  - .devcontainer
-  - Gemfile
-  - Gemfile.lock
-  - README.md

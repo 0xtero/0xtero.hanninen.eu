@@ -4,7 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  "postCreateCommand": "bash bin/install-tea && bundle install && bundle exec jekyll build",
+  "postCreateCommand": "bundle install && bundle exec jekyll build",
   "forwardPorts": [4000],
   "portsAttributes": {
     "4000": {
