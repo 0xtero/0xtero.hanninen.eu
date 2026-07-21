@@ -19,8 +19,10 @@ text = path.read_text()
 old = """      - name: Deploy to Codeberg Pages
         uses: https://codeberg.org/git-pages/action@v2
         with:
-          site: https://${{ forge.repository_owner }}.codeberg.page/${{ forge.repository }}/
-          token: ${{ forge.token }}
+          # Use repository.name (not repository / owner/repo) — a slash in the
+          # site path makes git-pages return "directories nested too deep".
+          site: https://${{ forgejo.repository_owner }}.codeberg.page/${{ forgejo.event.repository.name }}/
+          token: ${{ forgejo.token }}
           source: _site/
 """
 new = """      - name: Deploy to Codeberg Pages
@@ -28,7 +30,7 @@ new = """      - name: Deploy to Codeberg Pages
         with:
           site: https://0xtero.hanninen.eu/
           server: codeberg.page
-          token: ${{ forge.token }}
+          token: ${{ forgejo.token }}
           source: _site/
 """
 if old not in text:
