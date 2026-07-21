@@ -1,4 +1,8 @@
-# HOWTO: Use Sonos Speakers as Audio Outputs on Debian 13
+---
+layout: post
+title: "HOWTO: Use Sonos Speakers as Audio Outputs on Debian 13"
+date: 2026-07-15
+---
 
 So I have bunch of SONOS speakers around the house and I wanted to use these from my Linux desktop machine, essentially just like I'd use them from Spotify Connect (selecting one of the SONOS speakers as output and that's it).
 

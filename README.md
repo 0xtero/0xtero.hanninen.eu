@@ -12,7 +12,6 @@ After the container builds:
 ```bash
 ./bin/serve    # preview at http://localhost:4000
 ./bin/test     # run a local Jekyll build
-gh auth login  # one-time, if you need GitHub CLI
 ```
 
 ## Blog posts

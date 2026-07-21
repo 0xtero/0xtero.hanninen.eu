@@ -1,5 +1,8 @@
-
-# Second Brain
+---
+layout: post
+title: "Second Brain"
+date: 2026-07-11
+---
 
 I recently tried Obsidian. Again. For maybe 7th time... inspired by someones youtube video about organized project documentation which has always been my nemesis. I like writing notes, with a paper and pen, but I'm a complete administrative catastrophy when taking notes or "drafting ideas" using digital devices. 
 The "second brain" pitch is about capturing everything you read and think into Notion or Obsidian notes, organizing it with the right method, and an external mind should emerge.. one that makes you smarter, more creative, and (per the YouTube thumbnails) helps you run a six-figure business. There's a book, a course, a certification program, and an entire ecosystem of tools and influencers built on the idea.

@@ -1,5 +1,8 @@
-# The Sovereignty Rant
-
+---
+layout: post
+title: "The Sovereignty Rant"
+date: 2026-06-16
+---
 So the US government decided Anthropic's frontier models couldn't be shared outside its borders. No deprecation notice. No migration guide. No apologetic status page with a little yellow icon. Just gone on a Friday, which is of course the only day anything ever breaks. 
 
 Sovereignty drags a lot of flag-waving baggage behind it. The engineering version of the word is much smaller and far less self-important. It has nothing to do with patriotism or "buy local to feel good." It's about whether a critical dependency can be yanked by someone who isn't in the room and was never going to ask first.
