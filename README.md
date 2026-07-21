@@ -50,6 +50,13 @@ git remote add codeberg https://codeberg.org/0xtero/0xtero.hanninen.eu.git
 git push -u codeberg main
 ```
 
+Then enable Forgejo Actions (required once; disabled by default):
+
+1. Open [repo Settings → Units](https://codeberg.org/0xtero/0xtero.hanninen.eu/settings/units)
+2. Enable **Actions** and save
+3. Re-push `main` (or re-run the workflow) so `.forgejo/workflows/pages.yml` runs on `codeberg-medium`
+4. Confirm the run under the **Actions** tab, then spot-check the preview URL above
+
 ## DNS cutover (production switch)
 
 DNS is currently on EasyDNS. Live CNAME today:

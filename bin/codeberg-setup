@@ -12,7 +12,7 @@ if ! command -v tea >/dev/null 2>&1; then
   exit 1
 fi
 
-if ! tea logins --output simple 2>/dev/null | grep -q .; then
+if ! tea login list --output simple 2>/dev/null | grep -q .; then
   echo "No tea login configured." >&2
   echo "Create a token at https://codeberg.org/user/settings/applications" >&2
   echo "Then: tea login add --name codeberg --url https://codeberg.org --token <TOKEN>" >&2
@@ -21,13 +21,13 @@ if ! tea logins --output simple 2>/dev/null | grep -q .; then
 fi
 
 echo "Ensuring Codeberg repository ${OWNER}/${REPO} exists..."
-if tea repos search --owner "${OWNER}" --output simple 2>/dev/null | grep -qx "${REPO}" \
-  || tea repos search "${REPO}" --output json 2>/dev/null | grep -q "\"full_name\":\"${OWNER}/${REPO}\""; then
+if tea repos list --owner "${OWNER}" --fields name --output simple 2>/dev/null | grep -qx "${REPO}" \
+  || tea repos search "${OWNER}/${REPO}" --output json 2>/dev/null | grep -q "\"full_name\":\"${OWNER}/${REPO}\""; then
   echo "Repository already exists (or is visible)."
 else
   # Prefer creating under the logged-in user; --owner only if org.
-  if [[ "${OWNER}" == "$(tea whoami --output simple 2>/dev/null | awk '{print $1}')" ]] \
-    || [[ -z "$(tea whoami --output simple 2>/dev/null || true)" ]]; then
+  logged_in="$(tea login list --output simple 2>/dev/null | awk '$5 == "true" { print $4; exit }')"
+  if [[ "${OWNER}" == "${logged_in}" ]] || [[ -z "${logged_in}" ]]; then
     tea repos create \
       --name "${REPO}" \
       --description "Personal site (Jekyll) — Codeberg Pages"
