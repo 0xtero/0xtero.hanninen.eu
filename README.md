@@ -54,7 +54,7 @@ Then enable Forgejo Actions (required once; disabled by default):
 
 1. Open [repo Settings → Units](https://codeberg.org/0xtero/0xtero.hanninen.eu/settings/units)
 2. Enable **Actions** and save
-3. Re-push `main` (or re-run the workflow) so `.forgejo/workflows/pages.yml` runs on `codeberg-medium`
+3. Re-push `main` (or re-run the workflow) so `.forgejo/workflows/pages.yml` runs on `codeberg-small`
 4. Confirm the run under the **Actions** tab, then spot-check the preview URL above
 
 ## DNS cutover (production switch)

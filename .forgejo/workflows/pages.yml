@@ -11,25 +11,28 @@ jobs:
   build-and-deploy:
     if: ${{ forgejo.ref == 'refs/heads/main' }}
     # Hosted Codeberg runners: https://codeberg.org/actions/meta
-    # small = 5m / 4G — enough with bundler-cache; medium queues are often long.
     runs-on: codeberg-small
     steps:
       - name: Checkout
         uses: https://data.forgejo.org/actions/checkout@v4
 
+      # Keep gems outside the workspace. git-pages/action is a Docker action;
+      # act copies the whole workspace into that container and fails with
+      # "directories nested too deep" when vendor/bundle is present.
       - name: Setup Ruby
         uses: https://github.com/ruby/setup-ruby@v1
         with:
           ruby-version: "3.4"
-          bundler-cache: true
+          bundler-cache: false
 
-      - name: Build site
-        run: bundle exec jekyll build
-
-      # git-pages/action runs in Docker; act copies the workspace into that
-      # container. vendor/bundle from bundler-cache is nested too deep for docker cp.
-      - name: Remove vendor before deploy
-        run: rm -rf vendor
+      - name: Install gems and build site
+        run: |
+          bundle config set --local path /tmp/bundle
+          bundle install --jobs 4
+          bundle exec jekyll build
+          rm -rf vendor .bundle
+          echo "Workspace depth check:"
+          find . -type d | awk -F/ 'NF > max { max=NF; deepest=$0 } END { print max, deepest }'
 
       - name: Deploy to Codeberg Pages
         uses: https://codeberg.org/git-pages/action@v2
