@@ -1,0 +1,39 @@
+# Build Jekyll and deploy to Codeberg Pages (preview URL during pre-cutover).
+# GitHub Pages continues to serve the custom domain until DNS cutover.
+name: pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    if: ${{ forge.ref == 'refs/heads/main' }}
+    runs-on: docker
+    container:
+      # Node is required by actions/checkout; Ruby for Jekyll.
+      image: ruby:3.4-bookworm
+    steps:
+      - name: Install Node.js (for checkout action)
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends nodejs
+          node --version
+
+      - name: Checkout
+        uses: https://data.forgejo.org/actions/checkout@v4
+
+      - name: Install gems and build site
+        run: |
+          gem install bundler
+          bundle config set --local path 'vendor/bundle'
+          bundle install --jobs 4
+          bundle exec jekyll build
+
+      - name: Deploy to Codeberg Pages
+        uses: https://codeberg.org/git-pages/action@v2
+        with:
+          site: https://${{ forge.repository_owner }}.codeberg.page/${{ forge.repository }}/
+          token: ${{ forge.token }}
+          source: _site/
