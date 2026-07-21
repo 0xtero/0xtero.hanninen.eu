@@ -31,12 +31,12 @@ jobs:
           bundle install --jobs 4
           bundle exec jekyll build
           rm -rf vendor .bundle
-          echo "Workspace depth check:"
-          find . -type d | awk -F/ 'NF > max { max=NF; deepest=$0 } END { print max, deepest }'
 
       - name: Deploy to Codeberg Pages
         uses: https://codeberg.org/git-pages/action@v2
         with:
-          site: https://${{ forgejo.repository_owner }}.codeberg.page/${{ forgejo.repository }}/
+          # Use repository.name (not repository / owner/repo) — a slash in the
+          # site path makes git-pages return "directories nested too deep".
+          site: https://${{ forgejo.repository_owner }}.codeberg.page/${{ forgejo.event.repository.name }}/
           token: ${{ forgejo.token }}
           source: _site/
