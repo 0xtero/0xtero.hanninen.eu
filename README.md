@@ -65,6 +65,8 @@ DNS is currently on EasyDNS. Live CNAME today:
 |------|------|--------|
 | `_git-pages-forge-allowlist.0xtero` | TXT | `https://codeberg.org/0xtero/0xtero.hanninen.eu.git` |
 
+3. Check readiness: `./bin/dns-verify`
+
 No CAA records are required on `hanninen.eu` today.
 
 ### Cutover
