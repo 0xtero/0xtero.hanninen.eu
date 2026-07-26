@@ -2,54 +2,54 @@
 layout: default
 ---
 <div class="blog-layout">
-    {% include blog-sidebar.html %}
     <div class="blog-main">
-<div class="box post-box">
-    <p class="back-link"><a href="{{ '/' | relative_url }}">← Home</a></p>
-    <h1 class="blog-page-title" id="top">A Blog: Rare texts, musing and free range ranting</h1>
-    {% if paginator.posts.size > 0 %}
-    <div class="blog-posts">
-        {% for post in paginator.posts %}
-        <article class="post">
-            <h2 class="post-title">{{ post.title }}</h2>
-            <time class="post-meta" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
-            <div class="post-content">
-                {{ post.content }}
+        <div class="box post-box">
+            <p class="back-link"><a href="{{ '/' | relative_url }}">← Home</a></p>
+            <h1 class="blog-page-title" id="top">A Blog: Rare texts, musing and free range ranting</h1>
+            {% if paginator.posts.size > 0 %}
+            <div class="blog-posts">
+                {% for post in paginator.posts %}
+                <article class="post">
+                    <h2 class="post-title"><a href="{{ post.url | relative_url }}" class="post-title-link">{{ post.title }}</a></h2>
+                    <time class="post-meta" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+                    <div class="post-content">
+                        {{ post.content }}
+                    </div>
+                    <p class="post-permalink">
+                        <span class="post-permalink-label">Permalink:</span>
+                        <a href="{{ post.url | relative_url }}">{{ post.url }}</a>
+                    </p>
+                </article>
+                {% endfor %}
             </div>
-            <p class="post-permalink">
-                <span class="post-permalink-label">Permalink:</span>
-                <a href="{{ post.url | absolute_url }}">{{ post.url | absolute_url }}</a>
-            </p>
-        </article>
-        {% endfor %}
-    </div>
-    {% if paginator.total_pages > 1 %}
-    <nav class="blog-pagination" aria-label="Blog pagination">
-        <div class="pagination-start">
-            {% if paginator.previous_page %}
-            <a class="pagination-link pagination-newer" href="{{ paginator.previous_page_path | relative_url }}">← Newer posts</a>
+            {% if paginator.total_pages > 1 %}
+            <nav class="blog-pagination" aria-label="Blog pagination">
+                <div class="pagination-start">
+                    {% if paginator.previous_page %}
+                    <a class="pagination-link pagination-newer" href="{{ paginator.previous_page_path | relative_url }}">← Newer posts</a>
+                    {% endif %}
+                </div>
+                <span class="pagination-status">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+                <div class="pagination-end">
+                    {% if paginator.next_page %}
+                    <a class="pagination-link pagination-older" href="{{ paginator.next_page_path | relative_url }}">Older posts →</a>
+                    {% endif %}
+                </div>
+            </nav>
+            {% endif %}
+            <nav class="blog-nav-actions" aria-label="Blog shortcuts">
+                <a class="pagination-link" href="{{ '/' | relative_url }}">Home</a>
+                {% include blog-feed-link.html %}
+                <a class="pagination-link" href="#top">Back to top</a>
+            </nav>
+            {% else %}
+            <p class="post-list-empty">No posts yet.</p>
+            <nav class="blog-nav-actions" aria-label="Blog shortcuts">
+                <a class="pagination-link" href="{{ '/' | relative_url }}">Home</a>
+                {% include blog-feed-link.html %}
+            </nav>
             {% endif %}
         </div>
-        <span class="pagination-status">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-        <div class="pagination-end">
-            {% if paginator.next_page %}
-            <a class="pagination-link pagination-older" href="{{ paginator.next_page_path | relative_url }}">Older posts →</a>
-            {% endif %}
-        </div>
-    </nav>
-    {% endif %}
-    <nav class="blog-nav-actions" aria-label="Blog shortcuts">
-        <a class="pagination-link" href="{{ '/' | relative_url }}">Home</a>
-        {% include blog-feed-link.html %}
-        <a class="pagination-link" href="#top">Back to top</a>
-    </nav>
-    {% else %}
-    <p class="post-list-empty">No posts yet.</p>
-    <nav class="blog-nav-actions" aria-label="Blog shortcuts">
-        <a class="pagination-link" href="{{ '/' | relative_url }}">Home</a>
-        {% include blog-feed-link.html %}
-    </nav>
-    {% endif %}
-</div>
     </div>
+    {% include blog-sidebar.html %}
 </div>
