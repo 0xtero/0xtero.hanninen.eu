@@ -8,13 +8,23 @@
     "ghcr.io/devcontainers/features/git:1": {}
   },
   "postCreateCommand": "bundle install && bundle exec jekyll build",
+  "appPort": [
+    "4000:4000",
+    "35729:35729"
+  ],
   "forwardPorts": [
-    4000
+    4000,
+    35729
   ],
   "portsAttributes": {
     "4000": {
       "label": "Jekyll",
-      "onAutoForward": "notify"
+      "onAutoForward": "notify",
+      "requireLocalPort": true
+    },
+    "35729": {
+      "label": "Jekyll LiveReload",
+      "onAutoForward": "silent"
     }
   },
   "remoteUser": "vscode",
