@@ -124,12 +124,11 @@ If a sink exists but vanishes the moment you try to play to it, check the PipeWi
 journalctl --user -u pipewire | grep -i raop
 ```
 
-A `403 Forbidden` reply to the RTSP handshake means the speaker has AirPlay access control enabled (`acl=1` in its mDNS records). This happens when the speaker has been added to Apple Home with restricted access. Fix it on the Apple side: in the Home app, go to Home Settings, then Speakers & TV Access, and choose "Anyone On the Same Network" — or remove the speaker from HomeKit.
-Nothing on the Linux side can work around this.
+A `403 Forbidden` reply to the RTSP handshake means the speaker has AirPlay access control enabled (`acl=1` in its mDNS records). This happens when the speaker has been added to Apple Home with restricted access. You can fix it on the Apple side: in the Home app, go to Home Settings, then Speakers & TV Access, and choose "Anyone On the Same Network".
 
 ### Two sinks appear for the same speaker
 
-Avahi sometimes reports a device twice (IPv4 and IPv6 cache entries), and PipeWire versions around 1.4 can race on this and create duplicate sinks. If it bothers you, pin discovery to specific devices with `stream.rules` in `raop-discover.conf` — match on `raop.name` (the MAC-prefixed mDNS service name) and use the rules to exclude duplicates or rename sinks:
+Avahi sometimes reports a device twice (IPv4 and IPv6 cache entries) and create duplicate sinks. If it bothers you, pin discovery to specific devices with `stream.rules` in `raop-discover.conf` — match on `raop.name` (the MAC-prefixed mDNS service name) and use the rules to exclude duplicates or rename sinks:
 
 ```
 context.modules = [
@@ -150,6 +149,4 @@ context.modules = [
 ]
 ```
 
-## Wrap-up
-
-With one small config file you get Sonos speakers as first-class audio outputs on Debian 13: visible in the audio menu, selectable per-application or system-wide, and persistent across reboots. The static-sink and access-control fixes cover the two gotchas most likely to trip you up on a real home network.
+With this small config change you get Sonos speakers as audio outputs, visible in the audio menu.
