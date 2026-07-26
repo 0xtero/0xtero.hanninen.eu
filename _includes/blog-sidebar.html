@@ -1,31 +1,80 @@
 {% if site.posts.size > 0 %}
 {% assign posts_by_year = site.posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
 <nav class="blog-sidebar" aria-label="Blog archive">
-    <div class="blog-sidebar-heading-row">
-        <p class="blog-sidebar-heading">Posts</p>
-        {% include blog-feed-link.html %}
-    </div>
-    {% for year_group in posts_by_year %}
-    <details class="sidebar-year" open>
-        <summary class="sidebar-year-label">{{ year_group.name }}</summary>
-        {% assign posts_by_month = year_group.items | group_by_exp: 'post', 'post.date | date: "%Y-%m"' %}
-        {% for month_group in posts_by_month %}
-        {% assign month_label = month_group.items.first.date | date: '%B' %}
-        <details class="sidebar-month" open>
-            <summary class="sidebar-month-label">{{ month_label }}</summary>
-            <ul class="sidebar-posts">
-                {% for post in month_group.items %}
-                <li class="sidebar-post">
-                    <a href="{{ post.url | relative_url }}"{% if page.url == post.url %} class="sidebar-post-link is-current" aria-current="page"{% else %} class="sidebar-post-link"{% endif %}>
-                        <time class="sidebar-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time>
-                        <span class="sidebar-post-title">{{ post.title }}</span>
-                    </a>
-                </li>
+    <details class="blog-sidebar-panel">
+        <summary class="blog-sidebar-heading-row">
+            <span class="blog-sidebar-heading">Posts</span>
+            <span class="blog-sidebar-toggle-hint" aria-hidden="true">Archive</span>
+        </summary>
+        <div class="blog-sidebar-body">
+            <div class="blog-sidebar-feed">
+                {% include blog-feed-link.html %}
+            </div>
+            {% for year_group in posts_by_year %}
+            <details class="sidebar-year" open>
+                <summary class="sidebar-year-label">{{ year_group.name }}</summary>
+                {% assign posts_by_month = year_group.items | group_by_exp: 'post', 'post.date | date: "%Y-%m"' %}
+                {% for month_group in posts_by_month %}
+                {% assign month_label = month_group.items.first.date | date: '%B' %}
+                <details class="sidebar-month" open>
+                    <summary class="sidebar-month-label">{{ month_label }}</summary>
+                    <ul class="sidebar-posts">
+                        {% for post in month_group.items %}
+                        <li class="sidebar-post">
+                            <a href="{{ post.url | relative_url }}"{% if page.url == post.url %} class="sidebar-post-link is-current" aria-current="page"{% else %} class="sidebar-post-link"{% endif %}>
+                                <time class="sidebar-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time>
+                                <span class="sidebar-post-title">{{ post.title }}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </details>
                 {% endfor %}
-            </ul>
-        </details>
-        {% endfor %}
+            </details>
+            {% endfor %}
+        </div>
     </details>
-    {% endfor %}
 </nav>
+<script>
+(function () {
+    var query = window.matchMedia("(min-width: 769px)");
+    var panels = document.querySelectorAll(".blog-sidebar-panel");
+
+    function syncPanels(isDesktop) {
+        panels.forEach(function (panel) {
+            if (isDesktop) {
+                panel.setAttribute("open", "");
+            } else if (!panel.dataset.userToggled) {
+                panel.removeAttribute("open");
+            }
+        });
+    }
+
+    panels.forEach(function (panel) {
+        panel.addEventListener("toggle", function () {
+            if (!query.matches) {
+                panel.dataset.userToggled = "true";
+            }
+        });
+    });
+
+    syncPanels(query.matches);
+
+    if (typeof query.addEventListener === "function") {
+        query.addEventListener("change", function (event) {
+            panels.forEach(function (panel) {
+                delete panel.dataset.userToggled;
+            });
+            syncPanels(event.matches);
+        });
+    } else if (typeof query.addListener === "function") {
+        query.addListener(function (event) {
+            panels.forEach(function (panel) {
+                delete panel.dataset.userToggled;
+            });
+            syncPanels(event.matches);
+        });
+    }
+})();
+</script>
 {% endif %}
