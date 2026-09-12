@@ -970,3 +970,24 @@ a:hover, a:focus {
         margin-top: -0.25rem;
     }
 }
+
+/* Embeds: youtube iframes + tweets centered in post flow */
+.yt-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 1rem 0;
+}
+
+.yt-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.post-content .twitter-tweet {
+    margin: 1rem auto;
+    max-width: 550px;
+}
